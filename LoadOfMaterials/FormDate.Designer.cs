@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             panelFill = new Panel();
+            dateTimePickerEnd = new DateTimePicker();
+            dateTimePickerStart = new DateTimePicker();
             labelEndDate = new Label();
             labelStartDate = new Label();
             panelBottom = new Panel();
             buttonCancel = new Button();
             buttonConfirm = new Button();
-            dateTimePickerStart = new DateTimePicker();
-            dateTimePickerEnd = new DateTimePicker();
             panelFill.SuspendLayout();
             panelBottom.SuspendLayout();
             SuspendLayout();
@@ -52,6 +52,22 @@
             panelFill.Padding = new Padding(10);
             panelFill.Size = new Size(800, 275);
             panelFill.TabIndex = 0;
+            // 
+            // dateTimePickerEnd
+            // 
+            dateTimePickerEnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dateTimePickerEnd.Location = new Point(23, 144);
+            dateTimePickerEnd.Name = "dateTimePickerEnd";
+            dateTimePickerEnd.Size = new Size(200, 33);
+            dateTimePickerEnd.TabIndex = 5;
+            // 
+            // dateTimePickerStart
+            // 
+            dateTimePickerStart.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dateTimePickerStart.Location = new Point(23, 38);
+            dateTimePickerStart.Name = "dateTimePickerStart";
+            dateTimePickerStart.Size = new Size(200, 33);
+            dateTimePickerStart.TabIndex = 4;
             // 
             // labelEndDate
             // 
@@ -105,22 +121,6 @@
             buttonConfirm.Text = "Подтвердить";
             buttonConfirm.UseVisualStyleBackColor = true;
             buttonConfirm.Click += buttonConfirm_Click;
-            // 
-            // dateTimePickerStart
-            // 
-            dateTimePickerStart.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dateTimePickerStart.Location = new Point(23, 38);
-            dateTimePickerStart.Name = "dateTimePickerStart";
-            dateTimePickerStart.Size = new Size(200, 33);
-            dateTimePickerStart.TabIndex = 4;
-            // 
-            // dateTimePickerEnd
-            // 
-            dateTimePickerEnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dateTimePickerEnd.Location = new Point(23, 144);
-            dateTimePickerEnd.Name = "dateTimePickerEnd";
-            dateTimePickerEnd.Size = new Size(200, 33);
-            dateTimePickerEnd.TabIndex = 5;
             // 
             // FormDate
             // 

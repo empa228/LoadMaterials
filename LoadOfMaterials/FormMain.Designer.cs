@@ -59,6 +59,7 @@
             buttonGraph.TabIndex = 1;
             buttonGraph.Text = "Вывести график";
             buttonGraph.UseVisualStyleBackColor = true;
+            buttonGraph.Click += buttonGraph_Click;
             // 
             // buttonTable
             // 
@@ -83,15 +84,17 @@
             // 
             // dataGridView
             // 
+            dataGridView.AllowUserToAddRows = false;
             dataGridView.BackgroundColor = Color.White;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(10, 10);
             dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
             dataGridView.Size = new Size(1189, 715);
             dataGridView.TabIndex = 0;
             // 
-            // Form1
+            // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -112,6 +115,6 @@
         private Button buttonTable;
         private Panel panelDB;
         private Button buttonGraph;
-        private DataGridView dataGridView;
+        public DataGridView dataGridView;
     }
 }

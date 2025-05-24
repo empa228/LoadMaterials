@@ -24,7 +24,11 @@ namespace LoadOfMaterials
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            FormMain.DateStart = dateTimePickerStart.
+            FormMain.DateStart = dateTimePickerStart.Value;
+            FormMain.DateEnd = dateTimePickerEnd.Value;
+            FormMain refresher = new FormMain();
+            refresher.Show();
+            this.Close();
         }
     }
 }

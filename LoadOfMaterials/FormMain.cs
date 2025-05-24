@@ -16,8 +16,8 @@ namespace LoadOfMaterials
     public partial class FormMain : Form
     {
         private StatsContext? db;
-        public static DateTime DateStart { get; set; }
-        public static DateTime DateEnd { get; set; }
+        public static DateTime DateStart;
+        public static DateTime DateEnd;
         public FormMain()
         {
             InitializeComponent();
@@ -26,7 +26,8 @@ namespace LoadOfMaterials
         private void buttonTable_Click(object sender, EventArgs e)
         {
             FormDate formdate = new FormDate();
-            formdate.ShowDialog();
+            formdate.Show();
+            this.Hide();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -35,13 +36,42 @@ namespace LoadOfMaterials
 
             this.db = new StatsContext();
 
-            var filteredData = this.db.LoadingMaterials.Where(lm => lm.TimeNum >= DateStart && lm.TimeNum <= DateEnd).ToList();
+            DateTime startDate = DateStart;
+            DateTime endDate = DateEnd;
+
+            var filteredData = this.db.LoadingMaterials.Where(lm => lm.TimeNum >= startDate && lm.TimeNum <= endDate).ToList();
 
             // Привязка к DataGridView
             this.dataGridView.DataSource = new BindingList<LoadingMaterial>(filteredData);
 
-            //this.db.LoadingMaterials.Load();
-            //this.dataGridView.DataSource = db.LoadingMaterials.Local.ToBindingList();
+            dataGridView.Columns["TimeStr"].Visible = false;
+            dataGridView.Columns["Id"].Visible = false;
+            dataGridView.Columns["StoneSp"].Visible = false;
+            dataGridView.Columns["DolomiteSp"].Visible = false;
+            dataGridView.Columns["BriquetteSp"].Visible = false;
+            dataGridView.Columns["CokeSp"].Visible = false;
+            dataGridView.Columns["ReserveSp"].Visible = false;
+            dataGridView.Columns["TimeNum"].HeaderText = "Дата";
+            dataGridView.Columns["BatchNr"].HeaderText = "№";
+            dataGridView.Columns["StoneRec"].HeaderText = "Рец. Камень";
+            dataGridView.Columns["Stone"].HeaderText = "Камень";
+            dataGridView.Columns["Dolomite"].HeaderText = "Доломит";
+            dataGridView.Columns["Briquette"].HeaderText = "Брикеты";
+            dataGridView.Columns["Reserve"].HeaderText = "Запас";
+            dataGridView.Columns["CokeRec"].HeaderText = "Рец. Кокс";
+            dataGridView.Columns["Coke"].HeaderText = "Кокс";
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            this.db?.Dispose();
+            this.db = null;
+        }
+
+        private void buttonGraph_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
