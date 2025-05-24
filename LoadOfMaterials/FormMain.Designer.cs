@@ -1,6 +1,6 @@
 ﻿namespace LoadOfMaterials
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             panelButtons = new Panel();
-            button1 = new Button();
-            panel1 = new Panel();
-            button2 = new Button();
+            buttonGraph = new Button();
+            buttonTable = new Button();
+            panelDB = new Panel();
             dataGridView = new DataGridView();
             panelButtons.SuspendLayout();
-            panel1.SuspendLayout();
+            panelDB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // panelButtons
             // 
-            panelButtons.Controls.Add(button2);
-            panelButtons.Controls.Add(button1);
+            panelButtons.Controls.Add(buttonGraph);
+            panelButtons.Controls.Add(buttonTable);
             panelButtons.Dock = DockStyle.Top;
             panelButtons.Location = new Point(0, 0);
             panelButtons.Name = "panelButtons";
@@ -50,38 +50,40 @@
             panelButtons.Size = new Size(1209, 86);
             panelButtons.TabIndex = 0;
             // 
-            // button1
+            // buttonGraph
             // 
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(13, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(189, 60);
-            button1.TabIndex = 0;
-            button1.Text = "Вывести таблицу";
-            button1.UseVisualStyleBackColor = true;
+            buttonGraph.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonGraph.Location = new Point(208, 13);
+            buttonGraph.Name = "buttonGraph";
+            buttonGraph.Size = new Size(189, 60);
+            buttonGraph.TabIndex = 1;
+            buttonGraph.Text = "Вывести график";
+            buttonGraph.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // buttonTable
             // 
-            panel1.Controls.Add(dataGridView);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 86);
-            panel1.Name = "panel1";
-            panel1.Padding = new Padding(10);
-            panel1.Size = new Size(1209, 735);
-            panel1.TabIndex = 1;
+            buttonTable.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonTable.Location = new Point(13, 13);
+            buttonTable.Name = "buttonTable";
+            buttonTable.Size = new Size(189, 60);
+            buttonTable.TabIndex = 0;
+            buttonTable.Text = "Вывести таблицу";
+            buttonTable.UseVisualStyleBackColor = true;
+            buttonTable.Click += buttonTable_Click;
             // 
-            // button2
+            // panelDB
             // 
-            button2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button2.Location = new Point(208, 13);
-            button2.Name = "button2";
-            button2.Size = new Size(189, 60);
-            button2.TabIndex = 1;
-            button2.Text = "Вывести график";
-            button2.UseVisualStyleBackColor = true;
+            panelDB.Controls.Add(dataGridView);
+            panelDB.Dock = DockStyle.Fill;
+            panelDB.Location = new Point(0, 86);
+            panelDB.Name = "panelDB";
+            panelDB.Padding = new Padding(10);
+            panelDB.Size = new Size(1209, 735);
+            panelDB.TabIndex = 1;
             // 
             // dataGridView
             // 
+            dataGridView.BackgroundColor = Color.White;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(10, 10);
@@ -94,12 +96,12 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1209, 821);
-            Controls.Add(panel1);
+            Controls.Add(panelDB);
             Controls.Add(panelButtons);
-            Name = "Form1";
+            Name = "FormMain";
             Text = "FormMain";
             panelButtons.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            panelDB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
         }
@@ -107,9 +109,9 @@
         #endregion
 
         private Panel panelButtons;
-        private Button button1;
-        private Panel panel1;
-        private Button button2;
+        private Button buttonTable;
+        private Panel panelDB;
+        private Button buttonGraph;
         private DataGridView dataGridView;
     }
 }
