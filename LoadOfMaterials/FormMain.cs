@@ -43,6 +43,7 @@ namespace LoadOfMaterials
                 .Where(lm => lm.TimeNum >= startDate && lm.TimeNum <= endDate)
                 .ToList();
 
+            // Вычисляем средние значения по выбранным колонкам
             double StoneAvg = filteredData.Any() ? filteredData.Average(lm => lm.Stone) : 0;
             double DolomiteAvg = filteredData.Any() ? filteredData.Average(lm => lm.Dolomite) : 0;
             double CokeAvg = filteredData.Any() ? filteredData.Average(lm => lm.Coke) : 0;
@@ -50,18 +51,18 @@ namespace LoadOfMaterials
             // Создаем список для привязки и добавляем туда исходные данные
             var dataList = new List<LoadingMaterial>(filteredData);
 
-            // Создаем "итоговую" строку
+            // Создаем "итоговую" строку с суммами
             var footerItem = new LoadingMaterial
             {
-                BatchNr = 0, // Используем строку для идентификации
-                Stone = Math.Round(StoneAvg, 2),
-                Dolomite = Math.Round(DolomiteAvg, 2),
-                Coke = Math.Round(CokeAvg, 2)
+                BatchNr = 0,
+                Stone = Math.Round(filteredData.Sum(lm => lm.Stone), 2),
+                Dolomite = Math.Round(filteredData.Sum(lm => lm.Dolomite), 2),
+                Coke = Math.Round(filteredData.Sum(lm => lm.Coke), 2)
             };
 
             dataList.Add(footerItem);
 
-            // Привязка к DataGridView — используем dataList, чтобы отображалась итоговая строка
+            // Привязка данных к DataGridView
             this.dataGridView.DataSource = new BindingList<LoadingMaterial>(dataList);
 
             // Настройка колонок (после привязки)
@@ -76,14 +77,24 @@ namespace LoadOfMaterials
             dataGridView.Columns["TimeNum"].HeaderText = "Дата";
             dataGridView.Columns["BatchNr"].HeaderText = "№";
             dataGridView.Columns["StoneRec"].HeaderText = "Рец. Камень";
-            dataGridView.Columns["Stone"].HeaderText = "Камень";
-            dataGridView.Columns["Dolomite"].HeaderText = "Доломит";
+            dataGridView.Columns["Stone"].HeaderText = $"Камень (среднее {StoneAvg:F2})";
+            dataGridView.Columns["Dolomite"].HeaderText = $"Доломит (среднее {DolomiteAvg:F2})";
             dataGridView.Columns["Briquette"].HeaderText = "Брикеты";
             dataGridView.Columns["Reserve"].HeaderText = "Запас";
             dataGridView.Columns["CokeRec"].HeaderText = "Рец. Кокс";
-            dataGridView.Columns["Coke"].HeaderText = "Кокс";
+            dataGridView.Columns["Coke"].HeaderText = $"Кокс (среднее {CokeAvg:F2})";
 
-            // Обработчик выделения строки с итогами
+            // Форматирование числовых колонок для отображения двух знаков после запятой
+            string[] numericColumns = { "Stone", "Dolomite", "Coke" };
+            foreach (var colName in numericColumns)
+            {
+                if (dataGridView.Columns[colName] != null)
+                {
+                    dataGridView.Columns[colName].DefaultCellStyle.Format = "F2";
+                }
+            }
+
+            // Обработчик для выделения строки с итогами
             this.dataGridView.RowPrePaint += DataGridView_RowPrePaint;
         }
 
@@ -97,37 +108,12 @@ namespace LoadOfMaterials
                 row.DefaultCellStyle.BackColor = Color.LightYellow;
                 row.DefaultCellStyle.Font = new Font(dataGridView.Font, FontStyle.Bold);
                 row.ReadOnly = true;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style.ForeColor = Color.Black;
+                }
             }
         }
-
-        //double sum = 0;
-        //int count = 0;
-
-        //foreach (DataGridViewRow row in dataGridView.Rows)
-        //{
-        //    if (row.IsNewRow) continue; // пропускаем новую пустую строку, если есть
-
-        //    // Предположим, колонка "Price" содержит числовые значения
-        //    object value = row.Cells["Stone"].Value;
-
-        //    if (value != null && double.TryParse(value.ToString(), out double val))
-        //    {
-        //        sum += val;
-        //        count++;
-        //    }
-        //}
-
-        //double StoneAvg = count > 0 ? sum / count : 0;
-
-        //int footerRowIndexAvg = dataGridView.Rows.Add();
-        //DataGridViewRow footerRowAvg = dataGridView.Rows[footerRowIndexAvg];
-        //footerRowAvg.Cells["Stone"].Value = StoneAvg;
-        ////footerRowAvg.Cells["Dolomite"].Value = DolomiteAvg;
-        ////footerRowAvg.Cells["Coke"].Value = CokeAvg;
-        //footerRowAvg.DefaultCellStyle.Font = new Font(dataGridView.Font, FontStyle.Bold);
-        //footerRowAvg.DefaultCellStyle.BackColor = Color.LightYellow;
-        //footerRowAvg.ReadOnly = true;
-    //}
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
