@@ -19,16 +19,28 @@ namespace LoadOfMaterials
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            FormMain refresher = new FormMain();
+            refresher.Show();
             this.Close();
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
+            // Проверка корректности даты
+            if (dateTimePickerStart.Value > dateTimePickerEnd.Value) DateWarning();
+
             FormMain.DateStart = dateTimePickerStart.Value;
             FormMain.DateEnd = dateTimePickerEnd.Value;
+
             FormMain refresher = new FormMain();
             refresher.Show();
             this.Close();
+        }
+        private void DateWarning()
+        {
+            MessageBox.Show("Начальная дата не может быть больше конечной", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            FormDate closer = new FormDate();
+            closer.Close();
         }
     }
 }

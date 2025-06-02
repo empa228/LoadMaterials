@@ -55,19 +55,25 @@
             // 
             // dateTimePickerEnd
             // 
+            dateTimePickerEnd.CustomFormat = "dd.MM.yyyy HH:mm";
             dateTimePickerEnd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dateTimePickerEnd.Format = DateTimePickerFormat.Custom;
             dateTimePickerEnd.Location = new Point(23, 144);
             dateTimePickerEnd.Name = "dateTimePickerEnd";
             dateTimePickerEnd.Size = new Size(200, 33);
             dateTimePickerEnd.TabIndex = 5;
+            dateTimePickerEnd.Value = new DateTime(2025, 5, 26, 0, 0, 0, 0);
             // 
             // dateTimePickerStart
             // 
+            dateTimePickerStart.CustomFormat = "dd.MM.yyyy HH:mm";
             dateTimePickerStart.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dateTimePickerStart.Format = DateTimePickerFormat.Custom;
             dateTimePickerStart.Location = new Point(23, 38);
             dateTimePickerStart.Name = "dateTimePickerStart";
             dateTimePickerStart.Size = new Size(200, 33);
             dateTimePickerStart.TabIndex = 4;
+            dateTimePickerStart.Value = new DateTime(2025, 5, 26, 0, 0, 0, 0);
             // 
             // labelEndDate
             // 

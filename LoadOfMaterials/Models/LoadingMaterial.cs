@@ -36,4 +36,8 @@ public partial class LoadingMaterial
     public double ReserveSp { get; set; }
 
     public double CokeSp { get; set; }
+
+    public int IdShift { get; set; }
+
+    public virtual Shift IdShiftNavigation { get; set; } = null!;
 }

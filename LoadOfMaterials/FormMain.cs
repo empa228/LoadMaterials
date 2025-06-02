@@ -66,15 +66,17 @@ namespace LoadOfMaterials
             this.dataGridView.DataSource = new BindingList<LoadingMaterial>(dataList);
 
             // Настройка колонок (после привязки)
-            dataGridView.Columns["TimeStr"].Visible = false;
+            dataGridView.Columns["TimeNum"].Visible = false;
             dataGridView.Columns["Id"].Visible = false;
             dataGridView.Columns["StoneSp"].Visible = false;
             dataGridView.Columns["DolomiteSp"].Visible = false;
             dataGridView.Columns["BriquetteSp"].Visible = false;
             dataGridView.Columns["CokeSp"].Visible = false;
             dataGridView.Columns["ReserveSp"].Visible = false;
+            dataGridView.Columns["IdShift"].Visible = false;
+            dataGridView.Columns["IdShiftNavigation"].Visible = false;
 
-            dataGridView.Columns["TimeNum"].HeaderText = "Дата";
+            dataGridView.Columns["TimeStr"].HeaderText = "Дата";
             dataGridView.Columns["BatchNr"].HeaderText = "№";
             dataGridView.Columns["StoneRec"].HeaderText = "Рец. Камень";
             dataGridView.Columns["Stone"].HeaderText = $"Камень (среднее {StoneAvg:F2})";
@@ -122,9 +124,11 @@ namespace LoadOfMaterials
             this.db = null;
         }
 
-        private void buttonGraph_Click(object sender, EventArgs e)
+        private void buttonCRUD_Click(object sender, EventArgs e)
         {
-
+            FormCRUD formcrud = new FormCRUD();
+            formcrud.Show();
+            this.Hide();
         }
     }
 }
