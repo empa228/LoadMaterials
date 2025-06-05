@@ -110,7 +110,7 @@
             Controls.Add(panelDB);
             Controls.Add(panelButtons);
             Name = "FormCRUD";
-            Text = "FormCRUD";
+            Text = "Форма для редактирования таблиц";
             panelButtons.ResumeLayout(false);
             panelDB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();

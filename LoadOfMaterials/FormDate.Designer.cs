@@ -136,7 +136,7 @@
             Controls.Add(panelBottom);
             Controls.Add(panelFill);
             Name = "FormDate";
-            Text = "FormDate";
+            Text = "Форма выбора временного диапазона";
             panelFill.ResumeLayout(false);
             panelFill.PerformLayout();
             panelBottom.ResumeLayout(false);

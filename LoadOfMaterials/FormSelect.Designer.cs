@@ -98,7 +98,7 @@
             Controls.Add(panelSelect);
             Controls.Add(panelBottom);
             Name = "FormSelect";
-            Text = "FormChoose";
+            Text = "Форма для выбора таблицы";
             panelBottom.ResumeLayout(false);
             panelSelect.ResumeLayout(false);
             ResumeLayout(false);
